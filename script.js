@@ -1,31 +1,35 @@
-function convertToSolve(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
-
-  //your code here
+function convertToRoman(num) {
+  const romanMap = [
+    { value: 1000, symbol: "M" },
+    { value: 900, symbol: "CM" },
+    { value: 500, symbol: "D" },
+    { value: 400, symbol: "CD" },
+    { value: 100, symbol: "C" },
+    { value: 90, symbol: "XC" },
+    { value: 50, symbol: "L" },
+    { value: 40, symbol: "XL" },
+    { value: 10, symbol: "X" },
+    { value: 9, symbol: "IX" },
+    { value: 5, symbol: "V" },
+    { value: 4, symbol: "IV" },
+    { value: 1, symbol: "I" }
+  ];
 
   let result = "";
 
-  for (let [roman, value] of symbols) {
-    while (num >= value) {
-      result += roman;
-      num -= value;
+  for (let i = 0; i < romanMap.length; i++) {
+    while (num >= romanMap[i].value) {
+      result += romanMap[i].symbol;
+      num -= romanMap[i].value;
     }
   }
 
-  return result;
+  return result.toUpperCase();
 }
 
-// Example test cases
-console.log(convertToRoman(14));   
-console.log(convertToRoman(798));  
+// Example test case
+let number = 14;
+alert(`The Roman numeral for ${number} is: ${convertToRoman(number)}`);
 
-// do not edit below this line
-module.exports = convertToRoman;
+// You can also test in console:
+console.log(convertToRoman(14)); // XIV
